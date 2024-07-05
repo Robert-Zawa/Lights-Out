@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class MainFrame extends JFrame {
     private Projekt projekt;
 
@@ -18,11 +19,10 @@ public class MainFrame extends JFrame {
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10); // Ustawienie marginesów pomiędzy przyciskami
-        gbc.fill = GridBagConstraints.HORIZONTAL; // Ustawienie przycisków, aby wypełniały całą szerokość
+        gbc.insets = new Insets(50, 30, 50, 30); // Ustawienie marginesów pomiędzy przyciskami
 
         // Tworzenie przycisku "Zagraj"
-        JButton btnZagraj = new JButton("Zagraj");
+        Przycisk btnZagraj = new Przycisk("");
         btnZagraj.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new TrybStandardowy(projekt).rozgrywka(0);
@@ -30,6 +30,7 @@ public class MainFrame extends JFrame {
         });
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_END;
         gbc.weightx = 1.0; // Ustawienie wagi w osi x dla responsywności
         gbc.weighty = 1.0; // Ustawienie wagi w osi y dla responsywności
         panel.add(btnZagraj, gbc);
@@ -71,7 +72,8 @@ public class MainFrame extends JFrame {
                 projekt.pobierzTabliceWynikow().wyswietlWynikWszystkie();
             }
         });
-        gbc.gridy = 3;
+        gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.LAST_LINE_START;
         panel.add(btnWyswietlWyniki, gbc);
 
         // Tworzenie przycisku "Wyjście z gry"
@@ -83,6 +85,7 @@ public class MainFrame extends JFrame {
             }
         });
         gbc.gridy = 4;
+        gbc.anchor = GridBagConstraints.LAST_LINE_END;
         panel.add(btnWyjscie, gbc);
 
         add(panel);
